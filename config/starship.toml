@@ -1,0 +1,103 @@
+# Starship 提示符配置。
+# 目标：信息足够支持开发，但避免默认配置过于花哨。
+
+add_newline = true
+command_timeout = 1000
+format = "$status$directory$git_branch$git_status$package$python$nodejs$c$cmake$golang$rust$docker_context$kubernetes$cmd_duration$line_break$character"
+
+[status]
+# 上一条命令失败时显示退出码，成功时不显示。
+disabled = false
+format = "[$symbol$status ]($style)"
+symbol = "x"
+style = "bold red"
+
+[character]
+# 最后一行只保留一个简洁符号，减少视觉噪音。
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
+vimcmd_symbol = "[<](bold green)"
+
+[directory]
+# 路径最长保留 3 段；在 Git 仓库里优先相对仓库截断。
+truncation_length = 3
+truncate_to_repo = true
+style = "bold blue"
+
+[package]
+# 进入带包元数据的项目时显示版本，例如 package.json / Cargo.toml。
+format = "[$symbol$version ]($style)"
+symbol = "pkg "
+style = "208"
+
+[git_branch]
+# Git 分支名。
+symbol = "git "
+style = "bold purple"
+
+[git_status]
+# Git 工作区状态：修改、暂存、未跟踪、前后领先等。
+format = "([$all_status$ahead_behind]($style) )"
+style = "red"
+stashed = "="
+ahead = ">"
+behind = "<"
+diverged = "<>"
+modified = "!"
+staged = "+"
+untracked = "?"
+deleted = "x"
+
+[python]
+# Python 版本和虚拟环境。
+format = "[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
+symbol = "py "
+style = "yellow"
+
+[nodejs]
+# Node.js 版本。
+format = "[$symbol($version )]($style)"
+symbol = "node "
+style = "green"
+
+[c]
+# C/C++ 工具链版本；适合进入 CMake / C++ 项目时快速确认环境。
+format = "[$symbol($version(-$name) )]($style)"
+symbol = "cpp "
+style = "149"
+
+[cmake]
+# CMake 版本。
+format = "[$symbol($version )]($style)"
+symbol = "cmake "
+style = "bold blue"
+
+[golang]
+# Go 版本。
+format = "[$symbol($version )]($style)"
+symbol = "go "
+style = "cyan"
+
+[rust]
+# Rust 版本。
+format = "[$symbol($version )]($style)"
+symbol = "rs "
+style = "red"
+
+[docker_context]
+# Docker 当前 context。
+format = "[$symbol$context ]($style)"
+symbol = "docker "
+style = "blue"
+
+[kubernetes]
+# Kubernetes 当前 context 和 namespace。
+disabled = false
+format = "[$symbol$context ($namespace) ]($style)"
+symbol = "k8s "
+style = "bold cyan"
+
+[cmd_duration]
+# 只显示较慢命令的耗时，避免每条命令都占空间。
+min_time = 2000
+format = "took [$duration](dimmed yellow) "

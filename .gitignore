@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# editors
+*.swp
+*.swo
+*~
+
+# shell and temp logs
+*.log
+
+# accidental archive files
+*.tar
+*.tar.gz
+*.zip
