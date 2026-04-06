@@ -78,5 +78,12 @@ if [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
+# fnm：Node.js 版本管理器。
+# 二进制安装在 XDG 数据目录，环境由 fnm 自己注入。
+if [[ -x "$FNM_DIR/fnm" ]]; then
+  path=("$FNM_DIR" $path)
+  eval "$(fnm env --use-on-cd --shell zsh)"
+fi
+
 # 提示符交给 starship 管理，避免在 zshrc 里手写复杂 PROMPT。
 eval "$(starship init zsh)"

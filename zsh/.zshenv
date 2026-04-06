@@ -14,6 +14,10 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# fnm 数据目录。
+# 使用 XDG 数据目录，避免在 HOME 根目录生成 ~/.fnm。
+export FNM_DIR="$XDG_DATA_HOME/fnm"
+
 # wget HSTS 状态文件。
 # 收拢到 XDG 状态目录，避免在 HOME 根目录生成 ~/.wget-hsts。
 export WGETHSTS="$XDG_STATE_HOME/wget-hsts"
