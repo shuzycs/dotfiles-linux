@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-# 用法：在 Linux 新环境中执行，安装当前配置依赖的基础工具。
+# 用法：在 Linux 新环境中执行，安装当前 shell 配置依赖的基础工具。
 # 当前优先支持 Debian / Ubuntu。
 
 if [[ "$(uname -s)" != "Linux" ]]; then
@@ -25,11 +25,6 @@ PACKAGES=(
   git
   curl
   less
-  tmux
-  vim
-  build-essential
-  cmake
-  ninja-build
 )
 
 install_starship() {
@@ -43,7 +38,8 @@ install_starship() {
 }
 
 install_zsh_autosuggestions() {
-  local target_dir="$HOME/.zsh/zsh-autosuggestions"
+  local target_dir="$HOME/.local/share/zsh/zsh-autosuggestions"
+  local legacy_dir="$HOME/.zsh/zsh-autosuggestions"
 
   if [[ -d "$target_dir/.git" ]]; then
     printf 'zsh-autosuggestions is already installed.\n'
@@ -51,6 +47,13 @@ install_zsh_autosuggestions() {
   fi
 
   mkdir -p "$(dirname "$target_dir")"
+
+  if [[ -d "$legacy_dir/.git" ]]; then
+    mv "$legacy_dir" "$target_dir"
+    printf 'Moved zsh-autosuggestions to: %s\n' "$target_dir"
+    return
+  fi
+
   git clone https://github.com/zsh-users/zsh-autosuggestions "$target_dir"
 }
 
@@ -65,6 +68,7 @@ main() {
     "$HOME/.config" \
     "$HOME/.cache/zsh" \
     "$HOME/.cache/npm" \
+    "$HOME/.local/share/zsh" \
     "$HOME/.local/state/zsh" \
     "$HOME/.local/state/less" \
     "$HOME/.local/state/python" \

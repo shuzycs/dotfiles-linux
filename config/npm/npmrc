@@ -1,3 +1,4 @@
 # npm 用户配置文件。
-# 将缓存目录固定到 XDG 缓存路径，避免在 HOME 根目录生成 ~/.npm。
-cache=/home/shuzy/.cache/npm
+# 用 HOME 推导缓存目录，避免绑定到固定用户名。
+# 目标仍然是避免在 HOME 根目录生成 ~/.npm。
+cache=${HOME}/.cache/npm

@@ -74,8 +74,8 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # Zsh 自动建议插件；缺失时跳过，避免新环境首次启动报错。
-if [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [[ -f "$XDG_DATA_HOME/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+  source "$XDG_DATA_HOME/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 # fnm：Node.js 版本管理器。
